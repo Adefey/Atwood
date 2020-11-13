@@ -14,6 +14,7 @@ namespace Atwood
         public Form1()
         {
             InitializeComponent(); //сашик привки)!
+            //pososi
         }
     }
 }
