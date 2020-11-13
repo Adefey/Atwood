@@ -20,11 +20,6 @@ namespace Atwood
             leftCoord = ropeLength;
         }
 
-        public void AddToLeft(double NewWeight)
-        {
-            leftWeight += NewWeight;
-        }
-
         public void AddToRight(double NewWeight)
         {
             rightWeight += NewWeight;
