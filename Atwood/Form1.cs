@@ -11,10 +11,12 @@ namespace Atwood
 {
     public partial class Form1 : Form
     {
+        Physics MyPhysics;
         public Form1()
         {
             InitializeComponent(); //сашик привки)!
             //pososi
+            MyPhysics = new Physics();
         }
     }
 }
