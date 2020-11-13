@@ -13,7 +13,7 @@ namespace Atwood
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); //сашик привки)!
         }
     }
 }
