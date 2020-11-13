@@ -7,11 +7,21 @@ namespace Atwood
 {
     class Physics
     {
-        String Sashik;
-
+        readonly double RopeLength = 50;
+        readonly double g = 9.8145;
+        private double LeftWeight, RightWeight;
+        private double RightCoord;
+        
         public Physics()
         {
-            Sashik = "Raznoos)";
+            
         }
+
+
+    }
+
+    class Weights
+    {
+        public Weight;
     }
 }
