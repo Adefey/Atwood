@@ -24,19 +24,6 @@ namespace Atwood
         {
             rightWeight += NewWeight;
         }
-
-        public double GetLength()
-        {
-            return ropeLength;
-        }
-        public double GetLeftCoord()
-        {
-            return leftCoord;
-        }
-        public double GetRightCoord()
-        {
-            return rightCoord;
-        }
     }
 
     public class Weights
