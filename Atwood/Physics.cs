@@ -9,6 +9,7 @@ namespace Atwood
         private double leftWeight, rightWeight;
         private readonly double leftCoord, rightCoord;
         private readonly Weights weights;
+        private double time;
         public Physics()
         {
             Random rnd = new Random();
@@ -23,6 +24,15 @@ namespace Atwood
         public void AddToRight(double NewWeight)
         {
             rightWeight += NewWeight;
+        }
+
+        public void StartMovement()
+        {
+            time = DateTime.Now.Ticks;
+        }
+        public void ProcessPhysics()
+        {
+
         }
     }
 
