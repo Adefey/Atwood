@@ -10,9 +10,10 @@ namespace Atwood
         public Drawings drawings;
         private double ropeLength = 0.5;
         private double g = 9.8145;
-        private double leftWeight, rightWeight;
+        private double leftWeight;
+        private double rightWeight;
         private double leftCoord, rightCoord;
-        private  Weights weights;
+        private Weights weights;
         private double time;
         private double velocity;
         private Stopwatch stopwatch = new Stopwatch();
@@ -43,10 +44,10 @@ namespace Atwood
         }
         public void ProcessPhysics()
         {
-            time = stopwatch.ElapsedMilliseconds/10; //это черновик чтобы просто увидеть анимацию
-            leftCoord = 500 - time;                  //очевидно я сделаю нормальное перемещение 
+            time = stopwatch.ElapsedMilliseconds / 10; //это черновик чтобы просто увидеть анимацию
+            leftCoord = 500 - time;                   //очевидно я сделаю нормальное перемещение а не это
             rightCoord = time;
-            drawings.Draw(leftCoord, rightCoord);
+            drawings.Draw(leftCoord, rightCoord); //фикс миганий обяззателен. Саня займись
         }
     }
 
@@ -69,9 +70,9 @@ namespace Atwood
 
     public class Drawings
     {
-        Graphics graphics;
-        Bitmap background = Properties.Resources.Stand;
-        PictureBox operating;
+        private readonly Graphics graphics;
+        private readonly Bitmap background = Properties.Resources.Stand;
+        private readonly PictureBox operating;
         public Drawings(ref PictureBox picturebox)
         {
             graphics = picturebox.CreateGraphics();
