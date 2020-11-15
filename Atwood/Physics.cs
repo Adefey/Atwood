@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,26 +7,30 @@ namespace Atwood
     internal class Physics
     {
         public Drawings drawings;
-        private double ropeLength = 0.5;
-        private double g = 9.8145;
+        private double ropeLength;
+        private readonly double g = 9.8145;
         private double leftWeight;
         private double rightWeight;
         private double leftCoord, rightCoord;
         private Weights weights;
-        private double time;
         private double velocity;
-        private Stopwatch stopwatch = new Stopwatch();
-        public Physics(ref PictureBox picturebox)
+        private int dt;
+        private double stopCoord;
+        private double scalingCoef;
+        private double width, height;
+        public Physics(ref PictureBox picturebox, int tickTime, int scale, int width, int height)
         {
             Random rnd = new Random();
-            ropeLength += (rnd.Next(-1, 1)) / 1000;
             weights = new Weights();
             leftWeight = weights.BaseWeight;
             rightWeight = weights.BaseWeight;
             rightCoord = 0;
-            leftCoord = ropeLength;
             drawings = new Drawings(ref picturebox);
-
+            velocity = 0;
+            dt = tickTime;
+            scalingCoef = scale;
+            this.width = width;
+            this.height = height;
         }
 
         public void AddToRight(double NewWeight)
@@ -35,18 +38,27 @@ namespace Atwood
             rightWeight += NewWeight;
         }
 
-        public void StartMovement()
+        public void StartMovement(double obstacleCoord)
         {
-            stopwatch.Reset();
-            stopwatch.Start();
             rightCoord = 0;
-            leftCoord = ropeLength;
+            leftCoord = (double)457 / 543 * height;
+            ropeLength = leftCoord;
+            velocity = 0;
+            stopCoord = obstacleCoord;
         }
         public void ProcessPhysics()
         {
-            time = stopwatch.ElapsedMilliseconds / 10; //это черновик чтобы просто увидеть анимацию
-            leftCoord = 500 - time;                   //очевидно я сделаю нормальное перемещение а не это
-            rightCoord = time;
+            if (rightCoord < stopCoord * scalingCoef)
+            {
+                velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
+            }
+
+            if (rightCoord < ropeLength)
+            {
+                rightCoord += scalingCoef * ((((double)(dt)) / 1000) * velocity); //расстояние увеличивается
+            }
+
+            leftCoord = ropeLength - rightCoord;                   //очевидно я сделаю нормальное перемещение а не это
             drawings.Draw(leftCoord, rightCoord); //фикс миганий обяззателен. Саня займись
         }
     }
@@ -72,7 +84,7 @@ namespace Atwood
     {
         private readonly Graphics graphics;
         private readonly Bitmap background = Properties.Resources.Stand;
-        private readonly PictureBox operating;
+        public PictureBox operating;
         public Drawings(ref PictureBox picturebox)
         {
             graphics = picturebox.CreateGraphics();

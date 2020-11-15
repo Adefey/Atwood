@@ -10,7 +10,7 @@ namespace Atwood
         public Form1()
         {
             InitializeComponent();
-            physics = new Physics(ref pictureBox1);
+            physics = new Physics(ref pictureBox1, timer1.Interval, 10, pictureBox1.Width, pictureBox1.Height);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -20,7 +20,7 @@ namespace Atwood
 
         private void button1_Click(object sender, EventArgs e)
         {
-            physics.StartMovement();
+            physics.StartMovement(200);
             timer1.Enabled = true;
         }
     }
