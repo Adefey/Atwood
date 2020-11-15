@@ -94,8 +94,13 @@ namespace Atwood
         public void Draw(double leftCoord, double rightCoord)
         {
             operating.Image = background;
-            graphics.FillRectangle(Brushes.Black, 10, Convert.ToInt32(leftCoord), 50, 50);
-            graphics.FillRectangle(Brushes.Black, 250, Convert.ToInt32(rightCoord), 50, 50);
+            int leftCentreX = (int)((double)23 / 64 * operating.Width);
+            int rightCentreX = (int)((double)55 / 96 * operating.Width);
+            int UpY = (int)((double)245 / 2172 * operating.Height);
+            graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
+            graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
+            graphics.FillRectangle(Brushes.Black, leftCentreX-15, Convert.ToInt32(leftCoord), 30, 30);
+            graphics.FillRectangle(Brushes.Black, rightCentreX-15, Convert.ToInt32(rightCoord), 30, 30);
         }
     }
 }
