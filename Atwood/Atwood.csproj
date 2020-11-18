@@ -78,6 +78,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\Stand.png" />
+    <None Include="Resources\Tiles.png" />
+    <None Include="Resources\Wood.png" />
     <None Include="Resources\W6.5G.png" />
     <None Include="Resources\W60G.png" />
     <None Include="Resources\W12G.png" />

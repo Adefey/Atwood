@@ -73,6 +73,16 @@ namespace Atwood.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Tiles {
+            get {
+                object obj = ResourceManager.GetObject("Tiles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap W12G {
             get {
                 object obj = ResourceManager.GetObject("W12G", resourceCulture);
@@ -106,6 +116,16 @@ namespace Atwood.Properties {
         internal static System.Drawing.Bitmap W8_5G {
             get {
                 object obj = ResourceManager.GetObject("W8_5G", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wood {
+            get {
+                object obj = ResourceManager.GetObject("Wood", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

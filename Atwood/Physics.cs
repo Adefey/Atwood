@@ -12,18 +12,17 @@ namespace Atwood
         private double leftWeight;
         private double rightWeight;
         private double leftCoord, rightCoord;
-        private Weights weights;
         private double velocity;
-        private int dt;
+        private readonly int dt;
         private double stopCoord;
         private double scalingCoef;
         private double width, height;
+        
         public Physics(ref PictureBox picturebox, int tickTime, int scale, int width, int height)
         {
             Random rnd = new Random();
-            weights = new Weights();
-            leftWeight = weights.BaseWeight;
-            rightWeight = weights.BaseWeight;
+            leftWeight = Weights.BaseWeight;
+            rightWeight = Weights.BaseWeight;
             rightCoord = 0;
             drawings = new Drawings(ref picturebox);
             velocity = 0;
@@ -33,9 +32,22 @@ namespace Atwood
             this.height = height;
         }
 
-        public void AddToRight(double NewWeight)
+        public void SetRightWeight(double NewWeight)
         {
-            rightWeight += NewWeight;
+            rightWeight = NewWeight + Weights.BaseWeight;
+        }
+        public double GetRightWeight()
+        {
+            return rightWeight;
+        }
+
+        public double GetRightVelocity()
+        {
+            return velocity;
+        }
+        public double GetRightCoord()
+        {
+            return rightCoord;
         }
 
         public void StartMovement(double obstacleCoord)
@@ -63,21 +75,13 @@ namespace Atwood
         }
     }
 
-    public class Weights
+    public static class Weights
     {
-        public double BaseWeight = 0.06,
+        public const double BaseWeight = 0.06,
                       AddWeight1 = 0.0065,
                       AddWeight2 = 0.0085,
                       AddWeight3 = 0.012;
 
-        public Weights()
-        {
-            Random rnd = new Random();
-            BaseWeight += (rnd.Next(-1, 1)) / 100000;
-            AddWeight1 += (rnd.Next(-1, 1)) / 100000;
-            AddWeight2 += (rnd.Next(-1, 1)) / 100000;
-            AddWeight3 += (rnd.Next(-1, 1)) / 100000;
-        }
     }
 
     public class Drawings
@@ -99,13 +103,13 @@ namespace Atwood
         public void Draw(double leftCoord, double rightCoord)
         {
             operating.Image = background;
-            int leftCentreX = (int)((double) 23 / 64 * operating.Width);
-            int rightCentreX = (int)((double) 55 / 96 * operating.Width);
-            int UpY = (int)((double) 245 / 2172 * operating.Height);
+            int leftCentreX = (int)((double)23 / 64 * operating.Width);
+            int rightCentreX = (int)((double)55 / 96 * operating.Width);
+            int UpY = (int)((double)245 / 2172 * operating.Height);
             graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
             graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
-            graphics.DrawImage(W60G, new Rectangle(leftCentreX - 20, Convert.ToInt32(leftCoord), operating.Height/10, operating.Height/10));
-            graphics.DrawImage(W60G, new Rectangle(rightCentreX - 20, Convert.ToInt32(rightCoord), operating.Height/10, operating.Height/10));
+            graphics.DrawImage(W60G, new Rectangle(leftCentreX - 20, Convert.ToInt32(leftCoord), operating.Height / 10, operating.Height / 10));
+            graphics.DrawImage(W60G, new Rectangle(rightCentreX - 20, Convert.ToInt32(rightCoord), operating.Height / 10, operating.Height / 10));
         }
     }
 }
