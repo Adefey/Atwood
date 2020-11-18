@@ -33,7 +33,7 @@ namespace Atwood
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Start = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -69,22 +69,22 @@ namespace Atwood
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Controls.Add(this.Start);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(356, 233);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(525, 225);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // button1
+            // Start
             // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 48);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Начать";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Start.Location = new System.Drawing.Point(3, 3);
+            this.Start.Name = "Start";
+            this.Start.Size = new System.Drawing.Size(112, 48);
+            this.Start.TabIndex = 1;
+            this.Start.Text = "Начать";
+            this.Start.UseVisualStyleBackColor = true;
+            this.Start.Click += new System.EventHandler(this.button1_click);
             // 
             // tableLayoutPanel2
             // 
@@ -133,6 +133,7 @@ namespace Atwood
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Первый груз m=6.5g";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -143,6 +144,7 @@ namespace Atwood
             this.checkBox2.TabIndex = 1;
             this.checkBox2.Text = "Второй груз m=8.5g";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
@@ -153,6 +155,7 @@ namespace Atwood
             this.checkBox3.TabIndex = 2;
             this.checkBox3.Text = "Третий груз m=12g";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -168,6 +171,7 @@ namespace Atwood
             // 
             // timer1
             // 
+            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
@@ -203,7 +207,7 @@ namespace Atwood
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Start;
     }
 }
 

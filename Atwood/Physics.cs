@@ -40,8 +40,8 @@ namespace Atwood
 
         public void StartMovement(double obstacleCoord)
         {
-            rightCoord = 0;
-            leftCoord = (double)457 / 543 * height;
+            rightCoord = 120;
+            leftCoord = (double) /* 457 / 543 */ 10000 / 12580 * height;
             ropeLength = leftCoord;
             velocity = 0;
             stopCoord = obstacleCoord;
@@ -58,8 +58,8 @@ namespace Atwood
                 rightCoord += scalingCoef * ((((double)(dt)) / 1000) * velocity); //расстояние увеличивается
             }
 
-            leftCoord = ropeLength - rightCoord;                   //очевидно я сделаю нормальное перемещение а не это
-            drawings.Draw(leftCoord, rightCoord); //фикс миганий обяззателен. Саня займись
+            leftCoord = ropeLength - rightCoord + 90;  //(очевидно я сделаю нормальное перемещение а не это) //fixed
+            drawings.Draw(leftCoord, rightCoord); //фикс миганий обязателен. Саня займись!!
         }
     }
 
@@ -84,6 +84,11 @@ namespace Atwood
     {
         private readonly Graphics graphics;
         private readonly Bitmap background = Properties.Resources.Stand;
+        private readonly Bitmap W6_5G = Properties.Resources.W6_5G;
+        private readonly Bitmap W8_5G = Properties.Resources.W8_5G;
+        private readonly Bitmap W12G = Properties.Resources.W12G;
+        private readonly Bitmap W60G = Properties.Resources.W60G;
+
         public PictureBox operating;
         public Drawings(ref PictureBox picturebox)
         {
@@ -94,13 +99,13 @@ namespace Atwood
         public void Draw(double leftCoord, double rightCoord)
         {
             operating.Image = background;
-            int leftCentreX = (int)((double)23 / 64 * operating.Width);
-            int rightCentreX = (int)((double)55 / 96 * operating.Width);
-            int UpY = (int)((double)245 / 2172 * operating.Height);
+            int leftCentreX = (int)((double) 23 / 64 * operating.Width);
+            int rightCentreX = (int)((double) 55 / 96 * operating.Width);
+            int UpY = (int)((double) 245 / 2172 * operating.Height);
             graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
             graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
-            graphics.FillRectangle(Brushes.Black, leftCentreX-15, Convert.ToInt32(leftCoord), 30, 30);
-            graphics.FillRectangle(Brushes.Black, rightCentreX-15, Convert.ToInt32(rightCoord), 30, 30);
+            graphics.DrawImage(W60G, new Rectangle(leftCentreX - 20, Convert.ToInt32(leftCoord), operating.Height/10, operating.Height/10));
+            graphics.DrawImage(W60G, new Rectangle(rightCentreX - 20, Convert.ToInt32(rightCoord), operating.Height/10, operating.Height/10));
         }
     }
 }
