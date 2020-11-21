@@ -56,19 +56,19 @@ namespace Atwood
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3));
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3));
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString()+"кг";
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3));
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString()+"кг";
         }
     }
@@ -76,7 +76,7 @@ namespace Atwood
 /* 
  Надо сделать:
 1. Убрать мерцание (полностью переписать графику)
-2. Все абмлютные значения переписать в пропорции, если еще не сделано
+2. Все абсолютные значения переписать в пропорции, если еще не сделано
 3. В частности stopCoord
 4. Полностью разработать реализацию stopCoord препятствия и взаимодействия с ползунком прокрутки
 5. Разработать UI6
