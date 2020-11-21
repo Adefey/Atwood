@@ -8,12 +8,12 @@ namespace Atwood
     {
         public Drawings drawings;
         private double ropeLength;
-        private readonly double g = 9.8145;
+        private double g = 9.8145;
         private double leftWeight;
         private double rightWeight;
         private double leftCoord, rightCoord;
         private double velocity;
-        private readonly int dt;
+        private int dt;
         private double stopCoord;
         private double scalingCoef;
         private double width, height;
@@ -40,6 +40,7 @@ namespace Atwood
             chk2 = CHB2;
             chk3 = CHB3;
             drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3);
+            drawings.ProcessPictures(CHB1, CHB2, CHB3);
         }
         public double GetRightWeight()
         {
@@ -86,20 +87,39 @@ namespace Atwood
                       AddWeight1 = 0.0065,
                       AddWeight2 = 0.0085,
                       AddWeight3 = 0.012;
-
     }
 
     public class Drawings
     {
-        private Physics physics;
         private readonly Graphics graphics;
         private readonly Bitmap background = Properties.Resources.Stand;
         private readonly Bitmap W6_5G = Properties.Resources.W6_5G;
         private readonly Bitmap W8_5G = Properties.Resources.W8_5G;
         private readonly Bitmap W12G = Properties.Resources.W12G;
         private readonly Bitmap W60G = Properties.Resources.W60G;
-
+        private Bitmap resultBitmap;
         public PictureBox operating;
+        public void ProcessPictures(bool CHB1, bool CHB2, bool CHB3)
+        {
+            int resHeight = operating.Height / 10;
+            if (CHB1)
+            {
+                resHeight += operating.Height / 40;
+            }
+
+            if (CHB2)
+            {
+                resHeight += operating.Height / 20;
+            }
+
+            if (CHB3)
+            {
+                resHeight += operating.Height / 10 / 4 * 3;
+            }
+
+            resultBitmap = new Bitmap(operating.Height / 10, resHeight);
+            //создагие картинки
+        }
         public Drawings(ref PictureBox picturebox)
         {
             graphics = picturebox.CreateGraphics();
@@ -118,11 +138,20 @@ namespace Atwood
             graphics.DrawImage(W60G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord), operating.Height / 10, operating.Height / 10));
 
             if (chk1)
-                graphics.DrawImage(W6_5G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - (int)(operating.Height / 40), operating.Height / 10, operating.Height / 10 / 4));
+            {
+                graphics.DrawImage(W6_5G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - operating.Height / 40, operating.Height / 10, operating.Height / 40));
+            }
+
             if (chk2)
-                graphics.DrawImage(W8_5G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - (int)(operating.Height / 13.5), operating.Height / 10, operating.Height / 10 / 2));
+            {
+                graphics.DrawImage(W8_5G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - (int)(operating.Height / 13.5), operating.Height / 10, operating.Height / 20));
+            }
+
             if (chk3)
+            {
                 graphics.DrawImage(W12G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - (int)(operating.Height / 6.85), operating.Height / 10, operating.Height / 10 / 4 * 3));
+            }
         }
     }
 }
+//короче создаешь итоговую картинку в ProcessPicture
