@@ -8,15 +8,15 @@ namespace Atwood
     {
         public Drawings drawings;
         private double ropeLength;
-        private double g = 9.8145;
-        private double leftWeight;
+        private readonly double g = 9.8145;
+        private  double leftWeight = 0.06;
         private double rightWeight;
         private double leftCoord, rightCoord;
         private double velocity;
-        private int dt;
+        private readonly int dt;
         private double stopCoord;
-        private double scalingCoef;
-        private double width, height;
+        private readonly double scalingCoef;
+        private readonly double width, height;
         private bool chk1, chk2, chk3;
 
         public Physics(ref PictureBox picturebox, int tickTime, int scale, int width, int height)
@@ -39,8 +39,8 @@ namespace Atwood
             chk1 = CHB1;
             chk2 = CHB2;
             chk3 = CHB3;
-            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3);
             drawings.ProcessPictures(CHB1, CHB2, CHB3);
+            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3);
         }
         public double GetRightWeight()
         {
@@ -99,31 +99,52 @@ namespace Atwood
         private readonly Bitmap W60G = Properties.Resources.W60G;
         private Bitmap resultBitmap;
         public PictureBox operating;
-        public void ProcessPictures(bool CHB1, bool CHB2, bool CHB3)
-        {
-            int resHeight = operating.Height / 10;
-            if (CHB1)
-            {
-                resHeight += operating.Height / 40;
-            }
-
-            if (CHB2)
-            {
-                resHeight += operating.Height / 20;
-            }
-
-            if (CHB3)
-            {
-                resHeight += operating.Height / 10 / 4 * 3;
-            }
-
-            resultBitmap = new Bitmap(operating.Height / 10, resHeight);
-            //создагие картинки
-        }
         public Drawings(ref PictureBox picturebox)
         {
             graphics = picturebox.CreateGraphics();
             operating = picturebox;
+        }
+        public void ProcessPictures(bool CHB1, bool CHB2, bool CHB3)
+        {
+            int resHeight = W60G.Height;
+            if (CHB1)
+            {
+                resHeight += W6_5G.Height;
+            }
+
+            if (CHB2)
+            {
+                resHeight += W8_5G.Height;
+            }
+
+            if (CHB3)
+            {
+                resHeight += W12G.Height;
+            }
+
+            Bitmap bufBitmap = new Bitmap(W60G.Width, resHeight);
+            Graphics newGFX = Graphics.FromImage((Image)bufBitmap);
+            int curHeight = 0;
+
+            if (CHB1)
+            {
+                newGFX.DrawImage(W6_5G, new Point(0, curHeight));
+                curHeight += W6_5G.Height;
+            }
+
+            if (CHB2)
+            {
+                newGFX.DrawImage(W8_5G, new Point(0, curHeight));
+                curHeight += W8_5G.Height;
+            }
+
+            if (CHB3)
+            {
+                newGFX.DrawImage(W12G, new Point(0, curHeight));
+                curHeight += W12G.Height;
+            }
+            newGFX.DrawImage(W60G, new Point(0, curHeight));
+            this.resultBitmap = bufBitmap;
         }
 
         public void Draw(double leftCoord, double rightCoord, bool chk1, bool chk2, bool chk3)
@@ -135,22 +156,7 @@ namespace Atwood
             graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
             graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
             graphics.DrawImage(W60G, new Rectangle(leftCentreX - operating.Height / 20, Convert.ToInt32(leftCoord), operating.Height / 10, operating.Height / 10));
-            graphics.DrawImage(W60G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord), operating.Height / 10, operating.Height / 10));
-
-            if (chk1)
-            {
-                graphics.DrawImage(W6_5G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - operating.Height / 40, operating.Height / 10, operating.Height / 40));
-            }
-
-            if (chk2)
-            {
-                graphics.DrawImage(W8_5G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - (int)(operating.Height / 13.5), operating.Height / 10, operating.Height / 20));
-            }
-
-            if (chk3)
-            {
-                graphics.DrawImage(W12G, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord) - (int)(operating.Height / 6.85), operating.Height / 10, operating.Height / 10 / 4 * 3));
-            }
+            graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord), operating.Height / 10, operating.Height / 10));   //поправить высоту правого блока
         }
     }
 }

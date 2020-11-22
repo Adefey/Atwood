@@ -23,6 +23,7 @@ namespace Atwood
 
         private void button1_click(object sender, EventArgs e)
         {
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             physics.StartMovement(20);
             timer1.Enabled = true;
         }
@@ -76,7 +77,7 @@ namespace Atwood
 }
 /* 
  Надо сделать:
-1. Убрать мерцание (полностью переписать графику)
+1. Убрать мерцание (полностью переписать графику, если требуется)
 2. Полностью разработать реализацию stopCoord препятствия и взаимодействия с ползунком прокрутки
 3. Разработать UI
 4. Заменить физические координаты на фактические и наоборот где надо
