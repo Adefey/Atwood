@@ -144,7 +144,7 @@ namespace Atwood
                 curHeight += W12G.Height;
             }
             newGFX.DrawImage(W60G, new Point(0, curHeight));
-            this.resultBitmap = bufBitmap;
+            resultBitmap = bufBitmap;
         }
 
         public void Draw(double leftCoord, double rightCoord, bool chk1, bool chk2, bool chk3)
