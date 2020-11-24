@@ -51,6 +51,8 @@ namespace Atwood
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -178,6 +180,8 @@ namespace Atwood
             // 
             // flowLayoutPanel3
             // 
+            this.flowLayoutPanel3.Controls.Add(this.label9);
+            this.flowLayoutPanel3.Controls.Add(this.label10);
             this.flowLayoutPanel3.Controls.Add(this.label2);
             this.flowLayoutPanel3.Controls.Add(this.label3);
             this.flowLayoutPanel3.Controls.Add(this.label4);
@@ -193,7 +197,7 @@ namespace Atwood
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(3, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(178, 25);
             this.label2.TabIndex = 0;
@@ -202,7 +206,7 @@ namespace Atwood
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(187, 0);
+            this.label3.Location = new System.Drawing.Point(187, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 25);
             this.label3.TabIndex = 1;
@@ -211,7 +215,7 @@ namespace Atwood
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 25);
+            this.label4.Location = new System.Drawing.Point(3, 50);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(211, 25);
             this.label4.TabIndex = 2;
@@ -220,7 +224,7 @@ namespace Atwood
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(220, 25);
+            this.label5.Location = new System.Drawing.Point(220, 50);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(25, 25);
             this.label5.TabIndex = 3;
@@ -229,7 +233,7 @@ namespace Atwood
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 50);
+            this.label6.Location = new System.Drawing.Point(3, 75);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(240, 25);
             this.label6.TabIndex = 4;
@@ -238,7 +242,7 @@ namespace Atwood
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(249, 50);
+            this.label7.Location = new System.Drawing.Point(249, 75);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(25, 25);
             this.label7.TabIndex = 5;
@@ -280,6 +284,24 @@ namespace Atwood
             this.vScrollBar1.Name = "vScrollBar1";
             this.vScrollBar1.Size = new System.Drawing.Size(20, 461);
             this.vScrollBar1.TabIndex = 1;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(151, 25);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Масса слева";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(160, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(25, 25);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "0";
             // 
             // Form1
             // 
@@ -329,6 +351,8 @@ namespace Atwood
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
 

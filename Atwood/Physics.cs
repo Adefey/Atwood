@@ -47,6 +47,11 @@ namespace Atwood
             return rightWeight;
         }
 
+        public double GetLeftWeight()
+        {
+            return leftWeight;
+        }
+
         public double GetRightVelocity()
         {
             return velocity;
@@ -81,4 +86,3 @@ namespace Atwood
         }
     }  
 }
-//короче создаешь итоговую картинку в ProcessPicture

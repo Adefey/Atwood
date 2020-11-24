@@ -12,6 +12,7 @@ namespace Atwood
             InitializeComponent();
             physics = new Physics(ref pictureBox1, timer1.Interval, 10, pictureBox1.Width, pictureBox1.Height);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -33,6 +34,7 @@ namespace Atwood
             timer1.Enabled = false;
             physics = new Physics(ref pictureBox1, timer1.Interval, 10, pictureBox1.Width, pictureBox1.Height);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
 
         private double CheckAdd(CheckBox chk1, CheckBox chk2, CheckBox chk3)
@@ -60,18 +62,21 @@ namespace Atwood
         {
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
     }
 }

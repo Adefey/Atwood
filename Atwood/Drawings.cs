@@ -70,8 +70,8 @@ namespace Atwood
             int UpY = (int)((double)245 / 2172 * operating.Height);
             graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
             graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
-            graphics.DrawImage(W60G, new Rectangle(leftCentreX - operating.Height / 20, Convert.ToInt32(leftCoord), operating.Height / 10, operating.Height / 10));
-            graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - operating.Height / 20, Convert.ToInt32(rightCoord), operating.Height / 10, operating.Height / 10));   //поправить высоту правого блока
+            graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 2000)), Convert.ToInt32(leftCoord), (int)(W60G.Width * ((double)operating.Height / 2000)), (int)(W60G.Height * ((double)operating.Height / 2000))));
+            graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 2000)), Convert.ToInt32(rightCoord), (int)(resultBitmap.Width * ((double)operating.Height / 2000)), (int)(resultBitmap.Height * ((double)operating.Height / 2000))));
         }
     }
 }
