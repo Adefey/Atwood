@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\20201125_002743.png" />
     <Content Include="Resources\Stand.png" />
     <None Include="Resources\Stop.png" />
     <None Include="Resources\Tiles.png" />

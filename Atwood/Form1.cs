@@ -78,6 +78,11 @@ namespace Atwood
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+
+        }
     }
 }
 /* 

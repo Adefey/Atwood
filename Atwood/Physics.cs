@@ -9,12 +9,14 @@ namespace Atwood
         public Drawings drawings;
         private double ropeLength;
         private readonly double g = 9.8145;
-        private  double leftWeight = 0.06;
+        private double leftWeight = 0.06;
         private double rightWeight;
         private double leftCoord, rightCoord;
         private double velocity;
         private readonly int dt;
         private double stopCoord;
+        private double ht;
+        private double lt;
         private readonly double scalingCoef;
         private readonly double width, height;
         private bool chk1, chk2, chk3;
@@ -63,8 +65,8 @@ namespace Atwood
 
         public void StartMovement(double obstacleCoord)
         {
-            rightCoord = 120;
-            leftCoord = (double) /* 457 / 543 */ 10000 / 12580 * height;
+            rightCoord = 0;
+            leftCoord = (double) /* 457 / 543 */ 10000 / 15000 * height;
             ropeLength = leftCoord;
             velocity = 0;
             stopCoord = obstacleCoord;
@@ -73,15 +75,16 @@ namespace Atwood
         {
             if (rightCoord < stopCoord * scalingCoef)
             {
-                velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
+                //velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
+                velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g;
             }
 
             if (rightCoord < ropeLength)
             {
-                rightCoord += scalingCoef * ((((double)(dt)) / 1000) * velocity); //расстояние увеличивается
+                rightCoord += scalingCoef * ((((double)(dt)) / 100) * velocity); //длина нити справа увеличивается
             }
 
-            leftCoord = ropeLength - rightCoord + 90;  //(очевидно я сделаю нормальное перемещение а не это) //fixed
+            leftCoord = ropeLength - rightCoord;  //(очевидно я сделаю нормальное перемещение а не это) //fixed
             drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3); //фикс миганий обязателен. Саня займись!!
         }
     }  

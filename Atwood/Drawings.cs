@@ -12,6 +12,7 @@ namespace Atwood
         private readonly Bitmap W8_5G = Properties.Resources.W8_5G;
         private readonly Bitmap W12G = Properties.Resources.W12G;
         private readonly Bitmap W60G = Properties.Resources.W60G;
+        private readonly Bitmap Stop = Properties.Resources.Stop;
         private Bitmap resultBitmap;
         public PictureBox operating;
         public Drawings(ref PictureBox picturebox)
@@ -70,8 +71,9 @@ namespace Atwood
             int UpY = (int)((double)245 / 2172 * operating.Height);
             graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
             graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
-            graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 2000)), Convert.ToInt32(leftCoord), (int)(W60G.Width * ((double)operating.Height / 2000)), (int)(W60G.Height * ((double)operating.Height / 2000))));
-            graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 2000)), Convert.ToInt32(rightCoord), (int)(resultBitmap.Width * ((double)operating.Height / 2000)), (int)(resultBitmap.Height * ((double)operating.Height / 2000))));
+            graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 3000)), Convert.ToInt32(leftCoord), (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
+            graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), Convert.ToInt32(rightCoord), (int)(resultBitmap.Width * ((double)operating.Height / 3000)), (int)(resultBitmap.Height * ((double)operating.Height / 3000))));
+            graphics.DrawImage(Stop, new Rectangle((int)(operating.Width / 2.33), (int)(operating.Height / 40 * 30), (int)(operating.Width / 5), (int)(operating.Height / 10)));
         }
     }
 }
