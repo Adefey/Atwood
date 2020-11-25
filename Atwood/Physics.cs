@@ -75,8 +75,8 @@ namespace Atwood
         {
             if (rightCoord < stopCoord * scalingCoef)
             {
-                //velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
-                velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g;
+                velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
+                //velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g; //неправильно
             }
 
             if (rightCoord < ropeLength)
