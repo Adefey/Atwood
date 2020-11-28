@@ -10,7 +10,7 @@ namespace Atwood
         public Form1()
         {
             InitializeComponent();
-            physics = new Physics(ref pictureBox1, timer1.Interval, 10, pictureBox1.Width, pictureBox1.Height);
+            physics = new Physics(ref pictureBox1, timer1.Interval, ((double)pictureBox1.Height * 23 / 3620)); //перевод в сантиметры линейки
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
@@ -20,24 +20,24 @@ namespace Atwood
             physics.ProcessPhysics();
             label5.Text = Math.Round(physics.GetRightVelocity(), 2).ToString();
             label7.Text = Math.Round(physics.GetRightCoord(), 2).ToString();
-            label14.Text = physics.t.ToString() + " с";
+            label14.Text = physics.GetTime().ToString() + "сек";
         }
 
         private void button1_click(object sender, EventArgs e)
         {
-            Stopwatch stopwatch = new Stopwatch();
+            // Stopwatch stopwatch = new Stopwatch();
             //stopwatch.Start();
             physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             physics.StartMovement(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
-            
+
             timer1.Enabled = true;
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            physics = new Physics(ref pictureBox1, timer1.Interval, 10, pictureBox1.Width, pictureBox1.Height);
+            physics = new Physics(ref pictureBox1, timer1.Interval, ((double)pictureBox1.Height * 23 / 3620));
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }

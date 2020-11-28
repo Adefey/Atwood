@@ -1,7 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Diagnostics;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace Atwood
 {
@@ -10,35 +8,35 @@ namespace Atwood
         public Drawings drawings;
         private double ropeLength;
         private readonly double g = 9.8145;
-        private double leftWeight = 0.06;
+        private readonly double leftWeight = 0.06;
         private double rightWeight;
         private double leftCoord, rightCoord;
         private double velocity;
-        private readonly int dt;
+        private int dt;
         private double RemoveCoord;
         private double StopCoord;
-        private readonly double scalingCoef;
-        private readonly double width, height;
+        private double scalingCoef;
+        private double width, height;
         private bool chk1, chk2, chk3;
+        private Stopwatch stopWatch = new Stopwatch();
 
-        public double t;
         private double RemoveL, EndL;
-        private double V;
-        private double x;
+        private readonly double V;
+        private readonly double x;
 
 
-        public Physics(ref PictureBox picturebox, int tickTime, int scale, int width, int height)
+        public Physics(ref PictureBox picturebox, int tickTime, double scale)
         {
-            Random rnd = new Random();
             leftWeight = Weights.BaseWeight;
-            rightWeight = Weights.BaseWeight;
-            rightCoord = 0;
+            rightWeight = Weights.BaseWeight;       
             drawings = new Drawings(ref picturebox);
             velocity = 0;
             dt = tickTime;
             scalingCoef = scale;
-            this.width = width;
-            this.height = height;
+            this.width = picturebox.Width;
+            this.height = picturebox.Height;
+            rightCoord = height * 58 / 217;
+            leftCoord = height * 19 / 27;
         }
         public void SetLengths(double L, double l)
         {
@@ -52,7 +50,7 @@ namespace Atwood
             chk2 = CHB2;
             chk3 = CHB3;
             drawings.ProcessPictures(CHB1, CHB2, CHB3);
-            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3, RemoveCoord);
+            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3, -500);
         }
         public double GetRightWeight()
         {
@@ -73,35 +71,41 @@ namespace Atwood
             return rightCoord;
         }
 
+        public double GetTime()
+        {
+            return (double) stopWatch.ElapsedMilliseconds / 1000;
+        }
+
         public void StartMovement(double remove, double stop)
         {
-            t = 0;
-            rightCoord = 0;
-            leftCoord = (double) /* 457 / 543 */ 10000 / 15000 * height;
+            //rightCoord = 365 / 1086 * (double)height;
+            // leftCoord =  /* 457 / 543  3 / 4 */ 458 / 543 * (double)height;
+            rightCoord = height * 61 / 181;
+            leftCoord = height * 23 / 27;
             ropeLength = leftCoord;
             velocity = 0;
-            RemoveCoord = remove;
-            StopCoord = stop;
+            RemoveCoord = remove*scalingCoef + (height * 61 / 181);
+            StopCoord = stop*scalingCoef + (height * 61 / 181);
+            stopWatch.Reset();
+            stopWatch.Start();
         }
         public void ProcessPhysics()
-        {
-            if (rightCoord < RemoveCoord * scalingCoef)
+        {    
+            if (rightCoord < RemoveCoord)
             {
                 velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
                 //velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g; //неправильно
             }
 
-            if (rightCoord < ropeLength)
+            if (rightCoord < StopCoord)
             {
-                t += (double)(dt) / 1000;
-                rightCoord += scalingCoef * ((((double)(dt)) / 100) * velocity); //длина нити справа увеличивается
-                leftCoord = ropeLength - rightCoord;  //(очевидно я сделаю нормальное перемещение а не это)
+                rightCoord += scalingCoef * ((((double)(dt)) / 1000) * velocity); //длина нити справа увеличивается
+                leftCoord = ropeLength - rightCoord + height * 365 / 1086;  //height * 365 / 1086 компенсация начального значения
             }
-
+            
             //t = Math.Sqrt(((Weights.BaseWeight + GetRightWeight()) * Math.Pow(EndL, 2)) / (GetRightWeight() * RemoveL * g)); //нахождение времени из формулы g в методичке
 
-            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3, RemoveCoord); //фикс миганий обязателен. Саня займись!!
-        }
+            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3, (int)RemoveCoord); //фикс миганий обязателен. Саня займись!!
+        } //height*23/362 - 1 деление!
     }
-    public class Stopwatch { }
 }

@@ -47,6 +47,8 @@ namespace Atwood
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -58,9 +60,6 @@ namespace Atwood
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -256,6 +255,24 @@ namespace Atwood
             this.label7.TabIndex = 5;
             this.label7.Text = "0";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 100);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 25);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "Время";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(90, 100);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(25, 25);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "0";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -353,7 +370,7 @@ namespace Atwood
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(123, 31);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "0";
+            this.textBox1.Text = "50";
             // 
             // textBox2
             // 
@@ -361,38 +378,12 @@ namespace Atwood
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(123, 31);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "0";
+            this.textBox2.Text = "80";
             // 
             // timer1
             // 
             this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.vScrollBar1.Location = new System.Drawing.Point(0, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(20, 461);
-            this.vScrollBar1.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 100);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 25);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "Время";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(90, 100);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(25, 25);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "0";
             // 
             // Form1
             // 
@@ -401,7 +392,6 @@ namespace Atwood
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(884, 461);
-            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -436,7 +426,6 @@ namespace Atwood
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
