@@ -20,12 +20,17 @@ namespace Atwood
             physics.ProcessPhysics();
             label5.Text = Math.Round(physics.GetRightVelocity(), 2).ToString();
             label7.Text = Math.Round(physics.GetRightCoord(), 2).ToString();
+            label14.Text = physics.t.ToString() + " с";
         }
 
         private void button1_click(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+            physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
-            physics.StartMovement(20);
+            physics.StartMovement(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
+            
             timer1.Enabled = true;
         }
 
@@ -77,11 +82,6 @@ namespace Atwood
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
-        }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
         }
     }
 }

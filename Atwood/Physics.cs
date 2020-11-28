@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Atwood
 {
@@ -14,12 +15,17 @@ namespace Atwood
         private double leftCoord, rightCoord;
         private double velocity;
         private readonly int dt;
-        private double stopCoord;
-        private double ht;
-        private double lt;
+        private double RemoveCoord;
+        private double StopCoord;
         private readonly double scalingCoef;
         private readonly double width, height;
         private bool chk1, chk2, chk3;
+
+        public double t;
+        private double RemoveL, EndL;
+        private double V;
+        private double x;
+
 
         public Physics(ref PictureBox picturebox, int tickTime, int scale, int width, int height)
         {
@@ -34,7 +40,11 @@ namespace Atwood
             this.width = width;
             this.height = height;
         }
-
+        public void SetLengths(double L, double l)
+        {
+            RemoveL = l;
+            EndL = L;
+        }
         public void SetRightWeight(double NewWeight, bool CHB1, bool CHB2, bool CHB3)
         {
             rightWeight = NewWeight + Weights.BaseWeight;
@@ -42,7 +52,7 @@ namespace Atwood
             chk2 = CHB2;
             chk3 = CHB3;
             drawings.ProcessPictures(CHB1, CHB2, CHB3);
-            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3);
+            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3, RemoveCoord);
         }
         public double GetRightWeight()
         {
@@ -63,17 +73,19 @@ namespace Atwood
             return rightCoord;
         }
 
-        public void StartMovement(double obstacleCoord)
+        public void StartMovement(double remove, double stop)
         {
+            t = 0;
             rightCoord = 0;
             leftCoord = (double) /* 457 / 543 */ 10000 / 15000 * height;
             ropeLength = leftCoord;
             velocity = 0;
-            stopCoord = obstacleCoord;
+            RemoveCoord = remove;
+            StopCoord = stop;
         }
         public void ProcessPhysics()
         {
-            if (rightCoord < stopCoord * scalingCoef)
+            if (rightCoord < RemoveCoord * scalingCoef)
             {
                 velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
                 //velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g; //неправильно
@@ -81,11 +93,15 @@ namespace Atwood
 
             if (rightCoord < ropeLength)
             {
+                t += (double)(dt) / 1000;
                 rightCoord += scalingCoef * ((((double)(dt)) / 100) * velocity); //длина нити справа увеличивается
+                leftCoord = ropeLength - rightCoord;  //(очевидно я сделаю нормальное перемещение а не это)
             }
 
-            leftCoord = ropeLength - rightCoord;  //(очевидно я сделаю нормальное перемещение а не это) //fixed
-            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3); //фикс миганий обязателен. Саня займись!!
+            //t = Math.Sqrt(((Weights.BaseWeight + GetRightWeight()) * Math.Pow(EndL, 2)) / (GetRightWeight() * RemoveL * g)); //нахождение времени из формулы g в методичке
+
+            drawings.Draw(leftCoord, rightCoord, chk1, chk2, chk3, RemoveCoord); //фикс миганий обязателен. Саня займись!!
         }
-    }  
+    }
+    public class Stopwatch { }
 }

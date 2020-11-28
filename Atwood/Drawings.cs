@@ -63,12 +63,13 @@ namespace Atwood
             resultBitmap = bufBitmap;
         }
 
-        public void Draw(double leftCoord, double rightCoord, bool chk1, bool chk2, bool chk3)
+        public void Draw(double leftCoord, double rightCoord, bool chk1, bool chk2, bool chk3, double stopCoord)
         {
             operating.Image = background;
             int leftCentreX = (int)((double)23 / 64 * operating.Width);
             int rightCentreX = (int)((double)55 / 96 * operating.Width);
             int UpY = (int)((double)245 / 2172 * operating.Height);
+            graphics.DrawLine(new Pen(Color.Red, 8), leftCentreX, operating.Height / 2, rightCentreX, operating.Height / 2);
             graphics.DrawLine(new Pen(Color.Black, 3), leftCentreX, UpY, leftCentreX, Convert.ToInt32(leftCoord));
             graphics.DrawLine(new Pen(Color.Black, 3), rightCentreX, UpY, rightCentreX, Convert.ToInt32(rightCoord));
             graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 3000)), Convert.ToInt32(leftCoord), (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
