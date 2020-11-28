@@ -5,9 +5,9 @@ namespace Atwood
 {
     internal class Physics
     {
+        private double g = 9.8145;
         public Drawings drawings;
         private double ropeLength;
-        private readonly double g = 9.8145;
         private readonly double leftWeight = 0.06;
         private double rightWeight;
         private double leftCoord, rightCoord;
