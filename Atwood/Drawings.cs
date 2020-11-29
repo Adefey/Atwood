@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace Atwood
@@ -14,7 +13,7 @@ namespace Atwood
         private readonly Bitmap W60G = Properties.Resources.W60G;
         private readonly Bitmap Stop = Properties.Resources.Stop;
         private Bitmap resultBitmap;
-        private Pen pen;
+        private readonly Pen pen;
         public PictureBox operating;
         public Drawings(ref PictureBox picturebox)
         {
@@ -65,7 +64,7 @@ namespace Atwood
             resultBitmap = bufBitmap;
         }
 
-        public void Draw(double leftCoord, double rightCoord, bool chk1, bool chk2, bool chk3, int stopCoord)
+        public void Draw(double leftCoord, double rightCoord, int stopCoord)
         {
             operating.Image = background; //если убрать очиску экрана все будет норм
             int leftCentreX = (int)((double)23 / 64 * operating.Width);
@@ -79,7 +78,7 @@ namespace Atwood
             graphics.DrawLine(pen, rightCentreX, UpY, rightCentreX, rightLow);
             graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 3000)), leftLow, (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
             graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(resultBitmap.Width * ((double)operating.Height / 3000)), (int)(resultBitmap.Height * ((double)operating.Height / 3000))));
-            graphics.DrawImage(Stop, new Rectangle((rightCentreX + leftCentreX)/2 - (int)(int)(0.2 * Stop.Width * ((double)operating.Height / 2000)), stopLow, (int)(Stop.Width * ((double)operating.Height / 2000)), (int)((Stop.Height * ((double)operating.Height / 2000)))));
+            graphics.DrawImage(Stop, new Rectangle((rightCentreX + leftCentreX) / 2 - (int)(0.2 * Stop.Width * ((double)operating.Height / 2000)), stopLow, (int)(Stop.Width * ((double)operating.Height / 2000)), (int)((Stop.Height * ((double)operating.Height / 2000)))));
         }
     }
 }

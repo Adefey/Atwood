@@ -20,16 +20,16 @@ namespace Atwood
         {
             physics.ProcessPhysics();
             truePhysics.ProcessPhysics();
-            label5.Text = Math.Round(truePhysics.GetVelocity(), 3).ToString();
-            label7.Text = Math.Round(truePhysics.GetRightCoord(), 3).ToString();
-            label14.Text = physics.GetTime().ToString() + "сек";
+            label5.Text = Math.Round(truePhysics.GetVelocity(), 3).ToString() + "м/с";
+            label7.Text = Math.Round(truePhysics.GetRightCoord(), 3).ToString() + "см";
+            label14.Text = truePhysics.GetTime().ToString() + "сек";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             // Stopwatch stopwatch = new Stopwatch();
             //stopwatch.Start();
-            physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
+           // physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             physics.StartMovement(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
