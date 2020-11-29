@@ -35,8 +35,8 @@ namespace Atwood
             scalingCoef = scale;
             this.width = picturebox.Width;
             this.height = picturebox.Height;
-            rightCoord = height * 58 / 217;
-            leftCoord = height * 19 / 27;
+            rightCoord = height * 61 / 181;
+            leftCoord = height * 23 / 27;
         }
         public void SetLengths(double L, double l)
         {
@@ -99,7 +99,7 @@ namespace Atwood
 
             if (rightCoord < StopCoord)
             {
-                rightCoord += scalingCoef * ((((double)(dt)) / 1000) * velocity); //длина нити справа увеличивается
+                rightCoord += scalingCoef*2 * ((((double)(dt)) / 1000) * velocity); //длина нити справа увеличивается
                 leftCoord = ropeLength - rightCoord + height * 365 / 1086;  //height * 365 / 1086 компенсация начального значения
             }
             

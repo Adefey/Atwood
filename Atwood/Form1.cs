@@ -25,7 +25,7 @@ namespace Atwood
             label14.Text = physics.GetTime().ToString() + "сек";
         }
 
-        private void button1_click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             // Stopwatch stopwatch = new Stopwatch();
             //stopwatch.Start();
@@ -86,11 +86,16 @@ namespace Atwood
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+        }
     }
 }
 /* 
  Надо сделать:
 1. Убрать мерцание (полностью переписать графику, если требуется)
 2. Доразработать UI
-3. По показателям  физического движка, мы точно видим, что прога работает не в реалтайме. Это надо фиксить
+3. По показателям  физического движка, мы точно видим, что прога работает не в реалтайме. Это надо фиксить9-
  */

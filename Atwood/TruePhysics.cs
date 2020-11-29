@@ -38,6 +38,7 @@ namespace Atwood
                 rightCoord = velocity * stopWatch.ElapsedMilliseconds / 1000; //получаем в метрах
                 leftCoord = ropeLength - rightCoord;
             }
+
         }
 
         public double GetLeftCoord()
