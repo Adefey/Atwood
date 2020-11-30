@@ -13,6 +13,7 @@ namespace Atwood
         private readonly Bitmap W60G = Properties.Resources.W60G;
         private readonly Bitmap Stop = Properties.Resources.Stop;
         private Bitmap resultBitmap;
+        private Bitmap separatedBitmap;
         private readonly Pen pen;
         public PictureBox operating;
         public Drawings(ref PictureBox picturebox)
@@ -39,46 +40,60 @@ namespace Atwood
                 resHeight += W12G.Height;
             }
 
-            Bitmap bufBitmap = new Bitmap(W60G.Width, resHeight);
-            Graphics newGFX = Graphics.FromImage(bufBitmap);
+            Bitmap bufBitmap1 = new Bitmap(W60G.Width, resHeight);
+            Graphics newGFX1 = Graphics.FromImage(bufBitmap1);
+            Bitmap bufBitmap2 = new Bitmap(W60G.Width, resHeight-W60G.Height+1);
+            Graphics newGFX2 = Graphics.FromImage(bufBitmap2);
             int curHeight = 0;
 
             if (CHB1)
             {
-                newGFX.DrawImage(W6_5G, new Point(0, curHeight));
+                newGFX1.DrawImage(W6_5G, new Point(0, curHeight));
+                newGFX2.DrawImage(W6_5G, new Point(0, curHeight));
                 curHeight += W6_5G.Height;
             }
 
             if (CHB2)
             {
-                newGFX.DrawImage(W8_5G, new Point(0, curHeight));
+                newGFX1.DrawImage(W8_5G, new Point(0, curHeight));
+                newGFX2.DrawImage(W8_5G, new Point(0, curHeight));
                 curHeight += W8_5G.Height;
             }
 
             if (CHB3)
             {
-                newGFX.DrawImage(W12G, new Point(0, curHeight));
+                newGFX1.DrawImage(W12G, new Point(0, curHeight));
+                newGFX2.DrawImage(W12G, new Point(0, curHeight));
                 curHeight += W12G.Height;
             }
-            newGFX.DrawImage(W60G, new Point(0, curHeight));
-            resultBitmap = bufBitmap;
+            newGFX1.DrawImage(W60G, new Point(0, curHeight));
+            resultBitmap = bufBitmap1;
+            separatedBitmap = bufBitmap2;
         }
 
-        public void Draw(double leftCoord, double rightCoord, int stopCoord)
+        public void Draw(double leftCoord, double rightCoord, int stopCoord, bool separated)
         {
             operating.Image = background; //если убрать очиску экрана все будет норм
             int leftCentreX = (int)((double)23 / 64 * operating.Width);
             int rightCentreX = (int)((double)55 / 96 * operating.Width);
             int UpY = (int)((double)245 / 2172 * operating.Height);
-            int rightLow = (int)((rightCoord) - (resultBitmap.Height * ((double)operating.Height / 3000)));
+            int rightLow = (int)((rightCoord) - (W60G.Height * ((double)operating.Height / 3000)));
             int leftLow = (int)((leftCoord) - (W60G.Height * ((double)operating.Height / 3000)));
             int stopLow = (int)(stopCoord - (Stop.Height * ((double)operating.Height / 2000)));
             //graphics.DrawLine(new Pen(Color.Red, 8), leftCentreX, operating.Height / 2, rightCentreX, operating.Height / 2);
             graphics.DrawLine(pen, leftCentreX, UpY, leftCentreX, leftLow);
             graphics.DrawLine(pen, rightCentreX, UpY, rightCentreX, rightLow);
             graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 3000)), leftLow, (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
-            graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(resultBitmap.Width * ((double)operating.Height / 3000)), (int)(resultBitmap.Height * ((double)operating.Height / 3000))));
             graphics.DrawImage(Stop, new Rectangle((rightCentreX + leftCentreX) / 2 - (int)(0.2 * Stop.Width * ((double)operating.Height / 2000)), stopLow, (int)(Stop.Width * ((double)operating.Height / 2000)), (int)((Stop.Height * ((double)operating.Height / 2000)))));
+            if (!separated)
+            {
+                graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(resultBitmap.Width * ((double)operating.Height / 3000)), (int)(resultBitmap.Height * ((double)operating.Height / 3000))));
+            }
+            else
+            {
+                graphics.DrawImage(separatedBitmap, new Rectangle(rightCentreX - (int)(0.5 * separatedBitmap.Width * ((double)operating.Height / 3000)), (int)(stopCoord - (separatedBitmap.Height * ((double)operating.Height / 3000))), (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(separatedBitmap.Height * ((double)operating.Height / 3000))));
+                graphics.DrawImage(W60G, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
+            }
         }
     }
 }

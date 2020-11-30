@@ -29,6 +29,7 @@ namespace Atwood
             leftWeight = Weights.BaseWeight;
             rightWeight = Weights.BaseWeight;
             drawings = new Drawings(ref picturebox);
+            drawings.ProcessPictures(false, false, false);
             velocity = 0;
             dt = tickTime;
             scalingCoef = scale;
@@ -49,7 +50,7 @@ namespace Atwood
             chk2 = CHB2;
             chk3 = CHB3;
             drawings.ProcessPictures(CHB1, CHB2, CHB3);
-            drawings.Draw(leftCoord, rightCoord, -500);
+            drawings.Draw(leftCoord, rightCoord, 0, false);
         }
         public double GetRightWeight()
         {
@@ -83,11 +84,13 @@ namespace Atwood
         }
         public void ProcessPhysics()
         {
+            bool separated=false;
             if (rightCoord < RemoveCoord)
             {
                 velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
                 //velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g; //неправильно
             }
+            else separated = true;
 
             if (rightCoord < StopCoord)
             {
@@ -97,7 +100,7 @@ namespace Atwood
 
             //t = Math.Sqrt(((Weights.BaseWeight + GetRightWeight()) * Math.Pow(EndL, 2)) / (GetRightWeight() * RemoveL * g)); //нахождение времени из формулы g в методичке
 
-            drawings.Draw(leftCoord, rightCoord, (int)RemoveCoord); //фикс миганий обязателен. Саня займись!!
+            drawings.Draw(leftCoord, rightCoord, (int)RemoveCoord, separated); //фикс миганий обязателен. Саня займись!!
         } //height*23/362 - одно деление!
     }
 }
