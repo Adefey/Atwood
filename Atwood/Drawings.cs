@@ -5,6 +5,12 @@ namespace Atwood
 {
     internal class Drawings
     {
+        private int leftCentreX;
+        private int rightCentreX;
+        private int UpY;
+        private int rightLow;
+        private int leftLow;
+        private int stopLow;
         private readonly Graphics graphics;
         private readonly Bitmap background = Properties.Resources.Stand;
         private readonly Bitmap W6_5G = Properties.Resources.W6_5G;
@@ -16,9 +22,11 @@ namespace Atwood
         private Bitmap separatedBitmap;
         private readonly Pen pen;
         public PictureBox operating;
+        private readonly Image resultImage;
         public Drawings(ref PictureBox picturebox)
         {
-            graphics = picturebox.CreateGraphics();
+            resultImage = new Bitmap(picturebox.Width, picturebox.Height);
+            graphics = Graphics.FromImage(resultImage);
             pen = new Pen(Color.Black, 3);
             operating = picturebox;
         }
@@ -42,7 +50,7 @@ namespace Atwood
 
             Bitmap bufBitmap1 = new Bitmap(W60G.Width, resHeight);
             Graphics newGFX1 = Graphics.FromImage(bufBitmap1);
-            Bitmap bufBitmap2 = new Bitmap(W60G.Width, resHeight-W60G.Height+1);
+            Bitmap bufBitmap2 = new Bitmap(W60G.Width, resHeight - W60G.Height + 1);
             Graphics newGFX2 = Graphics.FromImage(bufBitmap2);
             int curHeight = 0;
 
@@ -73,14 +81,15 @@ namespace Atwood
 
         public void Draw(double leftCoord, double rightCoord, int stopCoord, bool separated)
         {
-            operating.Image = background; //если убрать очиску экрана все будет норм
-            int leftCentreX = (int)((double)23 / 64 * operating.Width);
-            int rightCentreX = (int)((double)55 / 96 * operating.Width);
-            int UpY = (int)((double)245 / 2172 * operating.Height);
-            int rightLow = (int)((rightCoord) - (W60G.Height * ((double)operating.Height / 3000)));
-            int leftLow = (int)((leftCoord) - (W60G.Height * ((double)operating.Height / 3000)));
-            int stopLow = (int)(stopCoord - (Stop.Height * ((double)operating.Height / 2000)));
-            //graphics.DrawLine(new Pen(Color.Red, 8), leftCentreX, operating.Height / 2, rightCentreX, operating.Height / 2);
+
+            graphics.Clear(Color.Transparent); //если убрать очиску экрана все будет норм   
+
+            leftCentreX = (int)((double)23 / 64 * operating.Width);
+            rightCentreX = (int)((double)55 / 96 * operating.Width);
+            UpY = (int)((double)245 / 2172 * operating.Height);
+            rightLow = (int)((rightCoord) - (W60G.Height * ((double)operating.Height / 3000)));
+            leftLow = (int)((leftCoord) - (W60G.Height * ((double)operating.Height / 3000)));
+            stopLow = (int)(stopCoord - (Stop.Height * ((double)operating.Height / 2000)));
             graphics.DrawLine(pen, leftCentreX, UpY, leftCentreX, leftLow);
             graphics.DrawLine(pen, rightCentreX, UpY, rightCentreX, rightLow);
             graphics.DrawImage(W60G, new Rectangle(leftCentreX - (int)(0.5 * W60G.Width * ((double)operating.Height / 3000)), leftLow, (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
@@ -94,6 +103,8 @@ namespace Atwood
                 graphics.DrawImage(separatedBitmap, new Rectangle(rightCentreX - (int)(0.5 * separatedBitmap.Width * ((double)operating.Height / 3000)), (int)(stopCoord - (separatedBitmap.Height * ((double)operating.Height / 3000))), (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(separatedBitmap.Height * ((double)operating.Height / 3000))));
                 graphics.DrawImage(W60G, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
             }
+            operating.Image = resultImage;
+            //MessageBox.Show(operating.Size.ToString() + "\r\n" + operating.Image.Size.ToString());
         }
     }
 }

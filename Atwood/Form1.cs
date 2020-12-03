@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Atwood
 {
@@ -90,6 +91,11 @@ namespace Atwood
         private void button2_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new AboutBox1().Show();
         }
     }
 }

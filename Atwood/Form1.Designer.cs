@@ -56,6 +56,7 @@ namespace Atwood
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -86,6 +87,9 @@ namespace Atwood
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::Atwood.Properties.Resources.Stand;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::Atwood.Properties.Resources.Stand;
             this.pictureBox1.Location = new System.Drawing.Point(6, 6);
@@ -102,8 +106,8 @@ namespace Atwood
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 8);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label2, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.label3, 2, 3);
@@ -123,6 +127,7 @@ namespace Atwood
             this.tableLayoutPanel2.Controls.Add(this.checkBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.checkBox2, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.checkBox3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button3, 0, 9);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(399, 6);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(6);
@@ -144,7 +149,7 @@ namespace Atwood
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(2, 434);
+            this.button1.Location = new System.Drawing.Point(2, 380);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(227, 50);
@@ -156,10 +161,10 @@ namespace Atwood
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(2, 488);
+            this.button2.Location = new System.Drawing.Point(2, 434);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(227, 59);
+            this.button2.Size = new System.Drawing.Size(227, 50);
             this.button2.TabIndex = 1;
             this.button2.Text = "Стоп";
             this.button2.UseVisualStyleBackColor = true;
@@ -395,12 +400,23 @@ namespace Atwood
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Location = new System.Drawing.Point(3, 489);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(225, 57);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "О программе";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -444,6 +460,7 @@ namespace Atwood
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Button button3;
     }
 }
 
