@@ -85,7 +85,7 @@ namespace Atwood
         public void ProcessPhysics()
         {
             bool separated=false;
-            if (rightCoord < RemoveCoord)
+            if ((rightCoord < RemoveCoord) && (rightWeight != leftWeight))
             {
                 velocity += (((double)(dt)) / 1000) * g; //dt - это интервал таймера. Делить на тысячу - секунды
                 //velocity += (GetRightWeight() - leftWeight) * (((double)(dt)) / 100) * g; //неправильно

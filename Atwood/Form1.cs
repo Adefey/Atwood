@@ -33,7 +33,7 @@ namespace Atwood
            // physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             physics.StartMovement(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
-            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
             truePhysics.Start();
             timer1.Enabled = true;
         }
@@ -72,6 +72,7 @@ namespace Atwood
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -79,6 +80,7 @@ namespace Atwood
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
@@ -86,6 +88,7 @@ namespace Atwood
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -101,7 +104,7 @@ namespace Atwood
 }
 /* 
  Надо сделать:
-1. Убрать мерцание (полностью переписать графику, если требуется)
-2. Доразработать UI
-3. По показателям  физического движка, мы точно видим, что прога работает не в реалтайме. Это надо фиксить9-
+1. Убрать лаги
+2. подогнать картинку на экране с тем что в лейбле
+3. Провести лабу у себя
  */
