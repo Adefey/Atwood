@@ -78,12 +78,17 @@ namespace Atwood
             resultBitmap = bufBitmap1;
             separatedBitmap = bufBitmap2;
         }
+        /*
+        public void DrawStatic()
+        {
+            leftCentreX = (int) ((double)23 / 64 * operating.Width);
+            rightCentreX = (int) ((double)55 / 96 * operating.Width);
+            UpY = (int) ((double)245 / 2172 * operating.Height);
+        }*/ //попытка в оптимизацию, доделаю потом. Возможно в методе Draw будет обращение к этому методу за этими тремя координатами, либо отдельный метод для каждой координаты
 
         public void Draw(double leftCoord, double rightCoord, int stopCoord, bool separated)
         {
-
             graphics.Clear(Color.Transparent); //если убрать очиску экрана все будет норм   
-
             leftCentreX = (int)((double)23 / 64 * operating.Width);
             rightCentreX = (int)((double)55 / 96 * operating.Width);
             UpY = (int)((double)245 / 2172 * operating.Height);
