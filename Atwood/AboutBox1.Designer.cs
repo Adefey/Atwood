@@ -69,7 +69,7 @@ namespace Atwood
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::Atwood.Properties.Resources.Stand;
+            this.logoPictureBox.Image = global::Atwood.Properties.Resources.about;
             this.logoPictureBox.Location = new System.Drawing.Point(7, 6);
             this.logoPictureBox.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.logoPictureBox.Name = "logoPictureBox";
@@ -100,7 +100,7 @@ namespace Atwood
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(479, 33);
             this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "1.1.0.0";
+            this.labelVersion.Text = "1.2_01";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCopyright
@@ -139,8 +139,7 @@ namespace Atwood
             this.textBoxDescription.Size = new System.Drawing.Size(479, 191);
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = "Цель работы\r\nИзучить принцип действия прибора Атвуда и определить при помощи этог" +
-    "о прибора ускорение свободного падения в поле силы тяжести Земли";
+            this.textBoxDescription.Text = "Авторы:\r\nАндрей \"Adefe\" Коленков\r\nАлександр \"ninekeem\" Якимов\r\n";
             // 
             // okButton
             // 

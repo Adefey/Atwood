@@ -8,6 +8,7 @@ namespace Atwood
     {
         private Physics physics;
         private TruePhysics truePhysics;
+        //private Drawings drawings;
 
         public Form1()
         {
@@ -28,10 +29,11 @@ namespace Atwood
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Stopwatch stopwatch = new Stopwatch();
+            //Stopwatch stopwatch = new Stopwatch();
             //stopwatch.Start();
-           // physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
+            //physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
             physics.StartMovement(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
             truePhysics.Start();
@@ -46,7 +48,7 @@ namespace Atwood
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
         }
 
-        private double CheckAdd(CheckBox chk1, CheckBox chk2, CheckBox chk3)
+        private double CheckAdd(CheckBox chk1, CheckBox chk2, CheckBox chk3, CheckBox chk4, CheckBox chk5, CheckBox chk6)
         {
             double result = 0;
             if (chk1.Checked)
@@ -64,12 +66,28 @@ namespace Atwood
                 result += Weights.AddWeight3;
             }
 
+            if (chk4.Checked)
+            {
+                result += Weights.AddWeight2G;
+            }
+
+            if (chk5.Checked)
+            {
+                result += Weights.AddWeight4G;
+            }
+
+            if (chk6.Checked)
+            {
+                result += Weights.AddWeight6G;
+            }
+
             return result;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
             truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
@@ -77,7 +95,8 @@ namespace Atwood
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                 checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
             truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
@@ -85,7 +104,35 @@ namespace Atwood
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3), checkBox1.Checked, checkBox2.Checked, checkBox3.Checked);
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+            label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
+        }  
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+            label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
+        }
+
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
+            label3.Text = physics.GetRightWeight().ToString() + "кг";
+            label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
+                checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
             truePhysics = new TruePhysics(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text), physics.GetRightWeight());
@@ -100,6 +147,7 @@ namespace Atwood
         {
             new AboutBox1().Show();
         }
+
     }
 }
 /* 

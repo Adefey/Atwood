@@ -17,19 +17,19 @@ namespace Atwood
         private double StopCoord;
         private readonly double scalingCoef;
         private readonly double width, height;
-        private bool chk1, chk2, chk3;
+        private bool chk1, chk2, chk3, chk4, chk5, chk6;
+        public PictureBox operating;
 
         //  private double RemoveL, EndL;
         //  private readonly double V;
         //  private readonly double x;
-
 
         public Physics(ref PictureBox picturebox, int tickTime, double scale)
         {
             leftWeight = Weights.BaseWeight;
             rightWeight = Weights.BaseWeight;
             drawings = new Drawings(ref picturebox);
-            drawings.ProcessPictures(false, false, false);
+            drawings.ProcessPictures(false, false, false, false, false, false);
             velocity = 0;
             dt = tickTime;
             scalingCoef = scale;
@@ -43,13 +43,16 @@ namespace Atwood
         //    RemoveL = l;
         //    EndL = L;
         //}
-        public void SetRightWeight(double NewWeight, bool CHB1, bool CHB2, bool CHB3)
+        public void SetRightWeight(double NewWeight, bool CHB1, bool CHB2, bool CHB3, bool CHB4, bool CHB5, bool CHB6)
         {
             rightWeight = NewWeight + Weights.BaseWeight;
             chk1 = CHB1;
             chk2 = CHB2;
             chk3 = CHB3;
-            drawings.ProcessPictures(CHB1, CHB2, CHB3);
+            chk4 = CHB4;
+            chk5 = CHB5;
+            chk5 = CHB6;
+            drawings.ProcessPictures(CHB1, CHB2, CHB3, CHB4, CHB5, CHB6);
             drawings.Draw(leftCoord, rightCoord, 0, false);
         }
         public double GetRightWeight()
@@ -100,7 +103,7 @@ namespace Atwood
 
             //t = Math.Sqrt(((Weights.BaseWeight + GetRightWeight()) * Math.Pow(EndL, 2)) / (GetRightWeight() * RemoveL * g)); //нахождение времени из формулы g в методичке
 
-            drawings.Draw(leftCoord, rightCoord, (int)RemoveCoord, separated); //фикс миганий обязателен. Саня займись!!
+            drawings.Draw(leftCoord, rightCoord, (int)RemoveCoord, separated);
         } //height*23/362 - одно деление!
     }
 }
