@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Drawing;
 
 namespace Atwood
 {
@@ -8,14 +7,15 @@ namespace Atwood
     {
         private Physics physics;
         private TruePhysics truePhysics;
-        //private Drawings drawings;
 
         public Form1()
         {
             InitializeComponent();
+            KeyPreview = true;
             physics = new Physics(ref pictureBox1, timer1.Interval, ((double)pictureBox1.Height * 23 / 3620)); //перевод в сантиметры линейки
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            physics.ProcessPhysics();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -29,9 +29,6 @@ namespace Atwood
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Stopwatch stopwatch = new Stopwatch();
-            //stopwatch.Start();
-            //physics.SetLengths(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
             physics.SetRightWeight(CheckAdd(checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6),
                 checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, checkBox4.Checked, checkBox5.Checked, checkBox6.Checked);
             physics.StartMovement(Convert.ToDouble(textBox1.Text), Convert.ToDouble(textBox2.Text));
@@ -46,6 +43,7 @@ namespace Atwood
             physics = new Physics(ref pictureBox1, timer1.Interval, ((double)pictureBox1.Height * 23 / 3620));
             label3.Text = physics.GetRightWeight().ToString() + "кг";
             label10.Text = Math.Round(physics.GetLeftWeight(), 2).ToString() + "кг";
+            physics.ProcessPhysics();
         }
 
         private double CheckAdd(CheckBox chk1, CheckBox chk2, CheckBox chk3, CheckBox chk4, CheckBox chk5, CheckBox chk6)
@@ -148,11 +146,12 @@ namespace Atwood
             new AboutBox1().Show();
         }
 
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.A)
+            {
+                MessageBox.Show("Adefe ninekeem ARM\r\nbeyond expectations\r\nvk.com/adefe vk.com/ninekeem", "Авторы", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
-/* 
- Надо сделать:
-1. Убрать лаги
-2. подогнать картинку на экране с тем что в лейбле
-3. Провести лабу у себя
- */

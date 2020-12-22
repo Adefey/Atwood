@@ -12,7 +12,6 @@ namespace Atwood
         private int leftLow;
         private int stopLow;
         private readonly Graphics graphics;
-        //private readonly Bitmap background = Properties.Resources.Stand;
         private readonly Bitmap W6_5G = Properties.Resources.W6_5G;
         private readonly Bitmap W8_5G = Properties.Resources.W8_5G;
         private readonly Bitmap W12G = Properties.Resources.W12G;
@@ -35,7 +34,6 @@ namespace Atwood
             operating = picturebox;
             leftCentreX = (int)((double)23 / 64 * picturebox.Width);
             rightCentreX = (int)((double)55 / 96 * picturebox.Width);
-            UpY = (int)((double)245 / 2172 * picturebox.Width);
             UpY = (int)((double)250 / 1500 * picturebox.Width);
         }
 
@@ -134,6 +132,7 @@ namespace Atwood
             graphics.DrawImage(Stop, new Rectangle((rightCentreX + leftCentreX) / 2 - (int)(0.2 * Stop.Width * ((double)operating.Height / 2000)), stopLow, (int)(Stop.Width * ((double)operating.Height / 2000)), (int)((Stop.Height * ((double)operating.Height / 2000)))));
             if (!separated)
             {
+                rightLow = (int)((rightCoord) - (resultBitmap.Height * ((double)operating.Height / 3000)));
                 graphics.DrawImage(resultBitmap, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(resultBitmap.Width * ((double)operating.Height / 3000)), (int)(resultBitmap.Height * ((double)operating.Height / 3000))));
             }
             else
@@ -142,7 +141,6 @@ namespace Atwood
                 graphics.DrawImage(W60G, new Rectangle(rightCentreX - (int)(0.5 * resultBitmap.Width * ((double)operating.Height / 3000)), rightLow, (int)(W60G.Width * ((double)operating.Height / 3000)), (int)(W60G.Height * ((double)operating.Height / 3000))));
             }
             operating.Image = resultImage;
-            //MessageBox.Show(operating.Size.ToString() + "\r\n" + operating.Image.Size.ToString());
         }
     }
 }

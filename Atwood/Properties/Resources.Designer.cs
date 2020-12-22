@@ -73,6 +73,26 @@ namespace Atwood.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap about_wo_our_logs {
+            get {
+                object obj = ResourceManager.GetObject("about_wo_our_logs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap about_wo_our_logs2 {
+            get {
+                object obj = ResourceManager.GetObject("about_wo_our_logs2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap about2 {
             get {
                 object obj = ResourceManager.GetObject("about2", resourceCulture);

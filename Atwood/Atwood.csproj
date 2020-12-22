@@ -127,6 +127,8 @@
     <None Include="Resources\about.png" />
     <None Include="Resources\about2.png" />
     <None Include="Resources\about3.png" />
+    <None Include="Resources\about_wo_our_logs2.png" />
+    <None Include="Resources\about_wo_our_logs.png" />
     <Content Include="Resources\Stand.png" />
     <None Include="Resources\Stop.png" />
     <None Include="Resources\Tiles.png" />

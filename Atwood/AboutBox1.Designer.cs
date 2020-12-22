@@ -42,6 +42,7 @@ namespace Atwood
             // 
             // tableLayoutPanel
             // 
+            this.tableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel.ColumnCount = 2;
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67F));
@@ -69,13 +70,13 @@ namespace Atwood
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::Atwood.Properties.Resources.about;
+            this.logoPictureBox.Image = global::Atwood.Properties.Resources.about_wo_our_logs;
             this.logoPictureBox.Location = new System.Drawing.Point(7, 6);
             this.logoPictureBox.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
             this.logoPictureBox.Size = new System.Drawing.Size(231, 395);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
             // 
@@ -100,7 +101,7 @@ namespace Atwood
             this.labelVersion.Name = "labelVersion";
             this.labelVersion.Size = new System.Drawing.Size(479, 33);
             this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "1.2_01";
+            this.labelVersion.Text = "1.4_02";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCopyright
@@ -124,7 +125,7 @@ namespace Atwood
             this.labelCompanyName.Name = "labelCompanyName";
             this.labelCompanyName.Size = new System.Drawing.Size(479, 33);
             this.labelCompanyName.TabIndex = 22;
-            this.labelCompanyName.Text = "Research&Engineering";
+            this.labelCompanyName.Text = "Research and Engineering";
             this.labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxDescription
@@ -139,7 +140,8 @@ namespace Atwood
             this.textBoxDescription.Size = new System.Drawing.Size(479, 191);
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = "Авторы:\r\nАндрей \"Adefe\" Коленков\r\nАлександр \"ninekeem\" Якимов\r\n";
+            this.textBoxDescription.Text = "Разработчики:\r\nЗайкин К. Д.\r\nПанфёров А. В.\r\n\r\nПри поддержке:\r\nКоленков  А. И. \"a" +
+    "defe\"\r\nЯкимов А. С. \"ninekeem\"";
             // 
             // okButton
             // 
@@ -158,6 +160,7 @@ namespace Atwood
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Atwood.Properties.Resources.Tiles;
             this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.tableLayoutPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -169,7 +172,7 @@ namespace Atwood
             this.Padding = new System.Windows.Forms.Padding(20, 17, 20, 17);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "О программе";
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
